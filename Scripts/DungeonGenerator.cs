@@ -6,10 +6,15 @@ using Cartographer;
 namespace Cartographer{
 
 
-public class DungeonGenerator 
+public class DungeonGenerator:MonoBehaviour
 {
     public static DungeonGenerator instance;
     [SerializeField] DungeonSO dungeonSO;
+    public void Awake()
+    {
+        instance=this;
+        generateDungeon();
+    }
     public void generateDungeon()
     {
         //instante empty Dungeon
@@ -19,14 +24,18 @@ public class DungeonGenerator
         
         //first place dungeonSO.startcellPrefab at origin
         
-        GameObject.Instantiate(dungeonSO.StartCellPrefab,Vector3.zero,Quaternion.identity,dungeon.transform);
+        GameObject game=GameObject.Instantiate(dungeonSO.StartCellPrefab,Vector3.zero,Quaternion.identity,dungeon.transform);
 
-
+        Debug.Log(game.GetComponent<Cell>());
+        dungeon.AddCell(game.GetComponent<Cell>()
+        );
         /*Get intermediate cells thru pacing graph and connect based on GateDirection
         Reject current cell if it encroaches on previously placed cells,Seal the gate if no new cell is compatible
         Prioritize POI cells they must be there.*/
 
-        GameObject.Instantiate(dungeonSO.EndCellPrefab,Vector3.zero,Quaternion.identity,dungeon.transform);
+        dungeon.AddCell(
+        GameObject.Instantiate(dungeonSO.EndCellPrefab,Vector3.zero,Quaternion.identity,dungeon.transform).GetComponent<Cell>()
+        );
         
 
         
