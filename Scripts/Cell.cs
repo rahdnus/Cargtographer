@@ -9,8 +9,7 @@ public class Cell : MonoBehaviour
    public enum Type{undefined, Arena, Corridor, POI, Terminal}
    public Type type;
    public Gate[] gates;
-   public Vector3 center;
-   public Bounds cellBound;
+   public Bounds bounds;
 }
 
 [System.Serializable]
@@ -21,8 +20,9 @@ public class Bounds{
 
 [System.Serializable]
 public class Gate{
-    public Vector3 position;
+    public Transform transform;
     public Direction direction;
+
 }
 
 [System.Serializable]
