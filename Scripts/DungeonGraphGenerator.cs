@@ -28,18 +28,11 @@ namespace Cartographer
             
             Node currentNode;
             graph.startNode=new Node(Cell.Type.Start);
-            
+            Debug.Log(numofNodes);
             currentNode=graph.startNode;
             numofNodes--;
             while(numofNodes!=1)
             {
-                numofNodes--;
-                int celltype=Random.Range(0,4);
-                if(celltype==0)
-                    currentNode.nextNode=new Node(Cell.Type.Corridor);
-                else
-                    currentNode.nextNode=new Node(Cell.Type.Arena);
-                
                 int numofbranches=Random.Range(0,3);//temp
 
                 currentNode.branchNodes=new BranchNode[numofbranches];
@@ -51,12 +44,20 @@ namespace Cartographer
                         else
                             currentNode.branchNodes[i]=new BranchNode(Cell.Type.Arena);
                 }
+                
+                int celltype=Random.Range(0,4);
+                if(celltype==0)
+                    currentNode.nextNode=new Node(Cell.Type.Corridor);
+                else
+                    currentNode.nextNode=new Node(Cell.Type.Arena);
+                
+                currentNode=currentNode.nextNode;  
+
+                numofNodes--;
+
                 /* for loop for each branch node */
-                currentNode=currentNode.nextNode;
-                
-                
             }
-            currentNode=new Node(Cell.Type.End);
+            currentNode.nextNode=new Node(Cell.Type.End);
             return graph;
         }
     }

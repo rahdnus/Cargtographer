@@ -20,7 +20,7 @@ namespace Cartographer{
                     {
                         names += branch.type.ToString() + "->";
                     }
-                    Debug.Log("Branches: " + names);
+                    // Debug.Log("Branches: " + names);
                 }
                 currentNode=currentNode.nextNode;
             }

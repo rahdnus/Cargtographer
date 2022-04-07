@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Cartographer{
 public class DungeonGenerator:MonoBehaviour
 {
+    [SerializeField] int graphSeed;
     private static DungeonGenerator instance;
     public static DungeonGenerator Instance{
         get{
@@ -24,9 +25,9 @@ public class DungeonGenerator:MonoBehaviour
     {
         //Instantiate Graph
       
-            DungeonGraph graph=DungeonGraphGenerator.Instance.generateDungeonGraph(1001);
+        DungeonGraph graph=DungeonGraphGenerator.Instance.generateDungeonGraph(graphSeed);
 
-            graph.display();
+        graph.display();
         
         //instantiate empty Dungeon
         GameObject DungeonObject=new GameObject("Dungeon");
