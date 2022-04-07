@@ -8,6 +8,7 @@ public class Cell : MonoBehaviour
     [System.Serializable]
    public enum Type{undefined, Arena, Corridor, POI, Terminal}
    public Type type;
+//    public Transform center;
    public Gate[] gates;
    public Bounds bounds;
 }

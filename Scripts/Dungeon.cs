@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cartographer;
 
 namespace Cartographer{
 public class Dungeon : MonoBehaviour

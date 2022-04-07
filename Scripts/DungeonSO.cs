@@ -6,7 +6,7 @@ namespace Cartographer{
 [CreateAssetMenu(fileName="Dungeon",menuName="SO/Dungeon")]
 public class DungeonSO : ScriptableObject
 {
-   public GameObject[] CellPrefab;  
-   public GameObject StartCellPrefab,EndCellPrefab; 
+   public Cell[] CellPrefab;  
+   public Cell StartCellPrefab,EndCellPrefab; 
 }
 }
