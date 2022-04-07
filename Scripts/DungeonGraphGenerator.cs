@@ -23,28 +23,41 @@ namespace Cartographer
         {
             Random.InitState(seed);
 
-            int numofNodes=Random.Range(0,20);
+            int numofNodes=Random.Range(5,20);
             DungeonGraph graph=new DungeonGraph();
             
             Node currentNode;
-            graph.startNode=new Node(Cell.Type.Terminal);
+            graph.startNode=new Node(Cell.Type.Start);
             
             currentNode=graph.startNode;
             numofNodes--;
             while(numofNodes!=1)
             {
+                numofNodes--;
+                int celltype=Random.Range(0,4);
+                if(celltype==0)
+                    currentNode.nextNode=new Node(Cell.Type.Corridor);
+                else
+                    currentNode.nextNode=new Node(Cell.Type.Arena);
+                
+                int numofbranches=Random.Range(0,3);//temp
 
-                currentNode.nextNode=new Node(Cell.Type.Arena);
-                currentNode.branchNodes=new BranchNode[1];
+                currentNode.branchNodes=new BranchNode[numofbranches];
+                for(int i=0;i<numofbranches;i++)
+                {
+                      int branchcelltype=Random.Range(0,4);//temp
+                        if(branchcelltype==0)
+                            currentNode.branchNodes[i]=new BranchNode(Cell.Type.Corridor);
+                        else
+                            currentNode.branchNodes[i]=new BranchNode(Cell.Type.Arena);
+                }
                 /* for loop for each branch node */
                 currentNode=currentNode.nextNode;
                 
-                numofNodes--;
                 
             }
-            currentNode=new Node(Cell.Type.Terminal);
-
-            return null;
+            currentNode=new Node(Cell.Type.End);
+            return graph;
         }
     }
 }

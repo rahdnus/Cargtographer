@@ -6,7 +6,7 @@ namespace Cartographer{
 public class Cell : MonoBehaviour
 {
     [System.Serializable]
-   public enum Type{undefined, Arena, Corridor, POI, Terminal}
+   public enum Type{undefined,Arena,Corridor,POI,Start,End}
    public Type type;
 //    public Transform center;
    public Gate[] gates;

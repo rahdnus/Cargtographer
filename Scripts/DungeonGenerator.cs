@@ -23,8 +23,10 @@ public class DungeonGenerator:MonoBehaviour
     public void generateDungeon()
     {
         //Instantiate Graph
-        DungeonGraph graph=DungeonGraphGenerator.Instance.generateDungeonGraph(1001);
+      
+            DungeonGraph graph=DungeonGraphGenerator.Instance.generateDungeonGraph(1001);
 
+            graph.display();
         
         //instantiate empty Dungeon
         GameObject DungeonObject=new GameObject("Dungeon");
