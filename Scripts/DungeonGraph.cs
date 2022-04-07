@@ -1,12 +1,15 @@
 // using System.Collections;
 // using System.Collections.Generic;
 using UnityEngine;
+using Cartographer.Attribute;
+
 namespace Cartographer{
     public class DungeonGraph
     {   
         public Node startNode;
-        //temp
-         public void display()
+
+        [ReadAs(Type.Debugger)]
+        public void display()
         {
             Node currentNode=startNode;
             while(currentNode!=null)
@@ -20,7 +23,7 @@ namespace Cartographer{
                     {
                         names += branch.type.ToString() + "->";
                     }
-                    // Debug.Log("Branches: " + names);
+                    Debug.Log("Branches: " + names);
                 }
                 currentNode=currentNode.nextNode;
             }
@@ -34,10 +37,7 @@ namespace Cartographer{
         public Node(Cell.Type type)
         {
             this.type=type;
-        }
-       
-        //temp
-       
+        }       
     }
     public class BranchNode{
         public BranchNode(Cell.Type type)
@@ -46,5 +46,24 @@ namespace Cartographer{
         }
         public Cell.Type type;
     }
+
+    namespace Attribute
+    {
+        [System.AttributeUsage(System.AttributeTargets.Method)]
+        class ReadAsAttribute : System.Attribute
+        {
+         
+            Type type;
+            public ReadAsAttribute(Type type)
+            {
+                this.type=type;
+            }
+        }
+           public enum Type
+            {
+                undefined,Debugger
+            }
+    }
+  
 }
 

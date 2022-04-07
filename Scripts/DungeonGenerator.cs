@@ -30,17 +30,51 @@ public class DungeonGenerator:MonoBehaviour
         graph.display();
         
         //instantiate empty Dungeon
+        
         GameObject DungeonObject=new GameObject("Dungeon");
         Dungeon dungeon=DungeonObject.AddComponent<Dungeon>();
         
+        Node currentNode=graph.startNode;
+        Vector3 position=Vector3.zero;
+        while(currentNode!=null)
+        {
+            Cell cellprefab=dungeonSO.getCellofType(currentNode.type);
+
+            /* 
+             TODO(Node)  
+                ->check if the cellprefab has required gate direction 
+                    ->try again on conflict
+                ->Intanstiate->AddCell->Offset
+                ->Check bounds
+                    ->try again on conflict
+             */
+
+            //OLD GameObject cellGameObject=GameObject.Instantiate(cellprefab.gameObject,position,Quaternion.identity,dungeon.transform);
+            //OLD dungeon.AddCell(cellGameObject.GetComponent<Cell>());
+            
+            /*
+            TODO(BranchNode)
+             ->next start filling gates with branchnodes 
+             ->Offset them accordingly
+             ->Check bounds
+                    -> try again on conflict
+            */
+
+            currentNode=currentNode.nextNode;
+        }
+     
+
+
+        
         //first place dungeonSO.startcellPrefab at origin
         
-        GameObject startCellObject=GameObject.Instantiate(dungeonSO.StartCellPrefab.gameObject,Vector3.zero,Quaternion.identity,dungeon.transform);
+        //OLD GameObject startCellObject=GameObject.Instantiate(dungeonSO.StartCellPrefab.gameObject,Vector3.zero,Quaternion.identity,dungeon.transform);
 
-        dungeon.AddCell(    
-        startCellObject.GetComponent<Cell>()
-        );
+        //OLD dungeon.AddCell(    
+        // startCellObject.GetComponent<Cell>()
+        // );
 
+        /* OLD
         Gate firstGate=dungeon.mycells[0].gates[1];
 
         Direction direction=firstGate.direction;
@@ -62,7 +96,8 @@ public class DungeonGenerator:MonoBehaviour
                 cellObject.transform.position=nextPosition+offset;
                 break;
              }
-         }  
+         }   */
+
 
         /* get gate and assign intermediate cell using gate direction*/
         /* offset position using bounds */

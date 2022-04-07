@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d465a196c1219924d82d12289ecf8653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 5
   gates:
   - transform: {fileID: 187199881742175545}
     direction: 1

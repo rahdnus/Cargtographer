@@ -136,13 +136,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d465a196c1219924d82d12289ecf8653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 4
   gates:
   - transform: {fileID: 8642597310815017792}
     direction: 1
   - transform: {fileID: 8642597310319588351}
     direction: 3
-  center: {fileID: 8642597310775524406}
   bounds:
     x0: -50
     x1: 0
