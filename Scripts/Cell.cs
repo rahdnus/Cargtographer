@@ -25,6 +25,7 @@ public class Bounds{
 [System.Serializable]
 public class Gate{
     public Transform transform;
+    public bool shut=false;
     public Direction direction;
 
 }

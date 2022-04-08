@@ -19,13 +19,14 @@ public class Utils
       }
   }
 
-    public Gate getRandomGate(Gate[] gates,Direction direction)
+    public int getRandomGate(Gate[] gates,Direction direction)
     {
         while(true)
         {
             int index=Random.Range(0,gates.Length);
-            if(gates[index].direction==direction)
-                return gates[index];
+          
+            if((gates[index].direction==direction||direction==Direction.undefined) && gates[index].shut==false )
+                return index;
         }
         
     }
@@ -41,15 +42,11 @@ public class Utils
         Debug.Log(-1);
         return -1;
     }
-    public int getRandomNum(int Length)
-    {
-        return Random.Range(0,Length);
-    }
    public bool hasGateofDirection(Gate[] gates,Direction direction)
    {
        foreach(Gate gate in gates)
        {
-           if(gate.direction==direction)
+           if(gate.direction==direction && gate.shut==false)
            {
                return true;
            }

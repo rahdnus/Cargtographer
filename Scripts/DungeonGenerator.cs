@@ -51,7 +51,7 @@ public class DungeonGenerator:MonoBehaviour
         while(currentNode!=null)
         {
        
-            int gateindex=Utils.Instance.getRandomNum(previousCell.gates.Length);
+            int gateindex=Utils.Instance.getRandomGate(previousCell.gates,Direction.undefined);
             Direction direction=Utils.Instance.getOppositeDirection(previousCell.gates[gateindex].direction);
                       
             GameObject cellGameObject=GameObject.Instantiate
@@ -65,9 +65,9 @@ public class DungeonGenerator:MonoBehaviour
             
             Cell cell=cellGameObject.GetComponent<Cell>();
 
-            Gate gate=Utils.Instance.getRandomGate(cell.gates,direction);
+            int newgateindex=Utils.Instance.getRandomGate(cell.gates,direction);
 
-            Vector3 offset=cellGameObject.transform.position-gate.transform.position;
+            Vector3 offset=cellGameObject.transform.position-cell.gates[newgateindex].transform.position;
             Vector3 spawnpoint=previousCell.gates[gateindex].transform.position+offset;
 
             cellGameObject.transform.position=spawnpoint;
@@ -79,6 +79,10 @@ public class DungeonGenerator:MonoBehaviour
                 //->redo
             //Addcell
 
+
+            //once finialised and conflictless
+            previousCell.gates[gateindex].shut=true;
+            cell.gates[newgateindex].shut=true;
             previousCell=cell;
             currentNode=currentNode.nextNode;
             yield return new WaitForSeconds(2f);
