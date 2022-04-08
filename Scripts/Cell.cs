@@ -11,6 +11,9 @@ public class Cell : MonoBehaviour
 //    public Transform center;
    public Gate[] gates;
    public Bounds bounds;
+
+
+
 }
 
 [System.Serializable]

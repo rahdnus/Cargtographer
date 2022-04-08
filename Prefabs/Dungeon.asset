@@ -9,15 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b052755acdcfe041bf302df6b636718, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ab83a2128b8b2f4bbdd52e54f14342f, type: 3}
   m_Name: Dungeon
   m_EditorClassIdentifier: 
-  CellPrefab:
-  - {fileID: 8642597311308531032, guid: 45848c90976a2b245a4f257107dfa2c5, type: 3}
-  - {fileID: 6627196405353166949, guid: 09008ffdbe24fe24f9693fbf382dc07c, type: 3}
-  - {fileID: 6627196405353166949, guid: c25e064ae2fba3e4eac70cc74289984b, type: 3}
-  - {fileID: 6627196405353166949, guid: 655e3b0ddf15f2d4d92c244f1d2d4edc, type: 3}
-  - {fileID: 6627196405353166949, guid: f64acbed13a6d4747b9aa6cbddf5a2b1, type: 3}
-  - {fileID: 187199880170984225, guid: 5be4bc2d7b6388c48a640bcc0c3c9c54, type: 3}
-  StartCellPrefab: {fileID: 8642597311308531032, guid: 45848c90976a2b245a4f257107dfa2c5, type: 3}
-  EndCellPrefab: {fileID: 187199880170984225, guid: 5be4bc2d7b6388c48a640bcc0c3c9c54, type: 3}
+  ArenaCellPrefabs:
+  - {fileID: 3442703785328649717, guid: 10a845da8076eed4e9bfd6535302441f, type: 3}
+  - {fileID: 3442703785328649717, guid: 70c8fc56722cfd8408052ed81d89c46b, type: 3}
+  CorridorCellPrefabs:
+  - {fileID: 3442703785328649717, guid: dfc4badc016f32143b65424b3a3e0585, type: 3}
+  - {fileID: 3442703785328649717, guid: 6f856f0075f5dc3468a5d4c7192e5e30, type: 3}
+  StartCellPrefab: {fileID: 5057565091242270066, guid: c67207331e01b134fb3a9698f7aa7310, type: 3}
+  EndCellPrefab: {fileID: 3442703785328649717, guid: 007a50566ba5ec54c9005090bb6dcd5d, type: 3}

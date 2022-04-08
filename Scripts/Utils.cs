@@ -18,6 +18,44 @@ public class Utils
         return instance;
       }
   }
+
+    public Gate getRandomGate(Gate[] gates,Direction direction)
+    {
+        while(true)
+        {
+            int index=Random.Range(0,gates.Length);
+            if(gates[index].direction==direction)
+                return gates[index];
+        }
+        
+    }
+    public int getIndexofGate(Gate[] gates,Gate gate)
+    {
+        for(int i=0;i<gates.Length;i++)
+        {
+            if(gates[i]==gate)
+            {
+                return i;
+            }
+        }
+        Debug.Log(-1);
+        return -1;
+    }
+    public int getRandomNum(int Length)
+    {
+        return Random.Range(0,Length);
+    }
+   public bool hasGateofDirection(Gate[] gates,Direction direction)
+   {
+       foreach(Gate gate in gates)
+       {
+           if(gate.direction==direction)
+           {
+               return true;
+           }
+       }
+       return false;
+   }
   public Direction getOppositeDirection(Direction inputDirection)
   {
        switch(inputDirection)

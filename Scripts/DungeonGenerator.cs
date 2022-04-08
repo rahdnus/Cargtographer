@@ -17,11 +17,11 @@ public class DungeonGenerator:MonoBehaviour
         }
     }
     [SerializeField] DungeonSO dungeonSO;
-    public void Awake()
+    public void Start()
     {
-        generateDungeon();
+        StartCoroutine(generateDungeon());
     }
-    public void generateDungeon()
+    IEnumerator generateDungeon()
     {
         //Instantiate Graph
       
@@ -35,11 +35,55 @@ public class DungeonGenerator:MonoBehaviour
         Dungeon dungeon=DungeonObject.AddComponent<Dungeon>();
         
         Node currentNode=graph.startNode;
-        Vector3 position=Vector3.zero;
+        Cell startCell=dungeonSO.getCellofType(Cell.Type.Start,Direction.undefined);
+
+        GameObject startCellObject=GameObject.Instantiate(startCell.gameObject,Vector3.zero,Quaternion.identity,dungeon.transform);
+
+        dungeon.AddCell(    
+        startCellObject.GetComponent<Cell>()
+        );
+        
+        Cell previousCell=startCellObject.GetComponent<Cell>();
+        
+        currentNode=currentNode.nextNode;
+        // TEMP
+
         while(currentNode!=null)
         {
-            Cell cellprefab=dungeonSO.getCellofType(currentNode.type);
+       
+            int gateindex=Utils.Instance.getRandomNum(previousCell.gates.Length);
+            Direction direction=Utils.Instance.getOppositeDirection(previousCell.gates[gateindex].direction);
+                      
+            GameObject cellGameObject=GameObject.Instantiate
+            (
+                dungeonSO.getCellofType(currentNode.type,direction).gameObject,
+                Vector3.zero,
+                Quaternion.identity,
+                dungeon.transform
+            );
+            
+            
+            Cell cell=cellGameObject.GetComponent<Cell>();
 
+            Gate gate=Utils.Instance.getRandomGate(cell.gates,direction);
+
+            Vector3 offset=cellGameObject.transform.position-gate.transform.position;
+            Vector3 spawnpoint=previousCell.gates[gateindex].transform.position+offset;
+
+            cellGameObject.transform.position=spawnpoint;
+
+            dungeon.AddCell(cell);
+
+            //find offset and Instantiate
+            //BoundCheck==collision
+                //->redo
+            //Addcell
+
+            previousCell=cell;
+            currentNode=currentNode.nextNode;
+            yield return new WaitForSeconds(2f);
+            
+        }
             /* 
              TODO(Node)  
                 ->check if the cellprefab has required gate direction 
@@ -52,19 +96,16 @@ public class DungeonGenerator:MonoBehaviour
             //OLD GameObject cellGameObject=GameObject.Instantiate(cellprefab.gameObject,position,Quaternion.identity,dungeon.transform);
             //OLD dungeon.AddCell(cellGameObject.GetComponent<Cell>());
             
-            /*
+       
+     
+
+        /*
             TODO(BranchNode)
              ->next start filling gates with branchnodes 
              ->Offset them accordingly
              ->Check bounds
                     -> try again on conflict
             */
-
-            currentNode=currentNode.nextNode;
-        }
-     
-
-
         
         //first place dungeonSO.startcellPrefab at origin
         
