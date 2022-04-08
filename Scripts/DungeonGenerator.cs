@@ -50,7 +50,10 @@ public class DungeonGenerator:MonoBehaviour
 
         while(currentNode!=null)
         {
-       
+            bool goodfit=false;
+            while(!goodfit)
+            {
+
             int gateindex=Utils.Instance.getRandomGate(previousCell.gates,Direction.undefined);
             Direction direction=Utils.Instance.getOppositeDirection(previousCell.gates[gateindex].direction);
                       
@@ -71,20 +74,21 @@ public class DungeonGenerator:MonoBehaviour
             Vector3 spawnpoint=previousCell.gates[gateindex].transform.position+offset;
 
             cellGameObject.transform.position=spawnpoint;
-
+/* 
+                if()check collision
+                continue; 
+ */
+            goodfit=true;
             dungeon.AddCell(cell);
-
-            //find offset and Instantiate
-            //BoundCheck==collision
-                //->redo
-            //Addcell
-
 
             //once finialised and conflictless
             previousCell.gates[gateindex].shut=true;
             cell.gates[newgateindex].shut=true;
             previousCell=cell;
             currentNode=currentNode.nextNode;
+
+            }
+
             yield return new WaitForSeconds(2f);
             
         }

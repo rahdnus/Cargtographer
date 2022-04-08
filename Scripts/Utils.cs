@@ -8,8 +8,8 @@ public class Utils
 {
  private static Utils instance=null;
 
-  public static Utils Instance
-  {
+    public static Utils Instance
+    {
       get{
           if(instance==null)
           {
@@ -17,8 +17,27 @@ public class Utils
           }
         return instance;
       }
-  }
-
+    }
+    public bool checkCellCollision(Cell cell,Dungeon dungeon)
+    {
+        foreach(Cell dungeonCell in dungeon.mycells)
+        {
+            if(cell.gameObject.transform.position.x+cell.bounds.x0>dungeonCell.gameObject.transform.position.x+dungeonCell.bounds.x1||
+            cell.gameObject.transform.position.x+cell.bounds.x1<dungeonCell.gameObject.transform.position.x+dungeonCell.bounds.x0)
+            {
+                continue;
+            }
+            else if(
+                cell.gameObject.transform.position.y+cell.bounds.y0>dungeonCell.gameObject.transform.position.y+dungeonCell.bounds.y1||
+                cell.gameObject.transform.position.y+cell.bounds.y1<dungeonCell.gameObject.transform.position.y+dungeonCell.bounds.y0
+            )
+            {
+                continue;
+            }
+            return true;
+        }
+        return false;
+    }
     public int getRandomGate(Gate[] gates,Direction direction)
     {
         while(true)
