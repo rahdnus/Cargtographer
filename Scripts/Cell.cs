@@ -20,6 +20,12 @@ public class Cell : MonoBehaviour
 public class Bounds{
     public float x0,x1;
     public float y0,y1;
+
+[HideInInspector]public float skinWidth;
+    Bounds()
+    {
+        skinWidth=0.125f;
+    }
 }
 
 [System.Serializable]

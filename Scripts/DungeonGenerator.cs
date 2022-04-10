@@ -24,7 +24,8 @@ public class DungeonGenerator:MonoBehaviour
     IEnumerator generateDungeon()
     {
         //Instantiate Graph
-      
+
+
         DungeonGraph graph=DungeonGraphGenerator.Instance.generateDungeonGraph(graphSeed);
 
         graph.display();
@@ -46,14 +47,13 @@ public class DungeonGenerator:MonoBehaviour
         Cell previousCell=startCellObject.GetComponent<Cell>();
         
         currentNode=currentNode.nextNode;
-        // TEMP
 
         while(currentNode!=null)
         {
             bool goodfit=false;
+
             while(!goodfit)
             {
-
             int gateindex=Utils.Instance.getRandomGate(previousCell.gates,Direction.undefined);
             Direction direction=Utils.Instance.getOppositeDirection(previousCell.gates[gateindex].direction);
                       
@@ -74,11 +74,15 @@ public class DungeonGenerator:MonoBehaviour
             Vector3 spawnpoint=previousCell.gates[gateindex].transform.position+offset;
 
             cellGameObject.transform.position=spawnpoint;
-/* 
-                if()check collision
-                continue; 
- */
-            goodfit=true;
+            // if(Utils.Instance.checkCellCollision(cell,dungeon))
+            // {
+            //     continue;
+            // }
+// /* 
+//                 if()check collision
+//                 continue; 
+//  */
+             goodfit=true;
             dungeon.AddCell(cell);
 
             //once finialised and conflictless
