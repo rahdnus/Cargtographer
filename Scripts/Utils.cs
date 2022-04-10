@@ -20,20 +20,22 @@ public class Utils
     }
     public bool checkCellCollision(Cell cell,Dungeon dungeon)
     {
+        float skinWidth=0.125f;
         foreach(Cell dungeonCell in dungeon.mycells)
         {
+
             // Debug.Log(cell.gameObject.transform.position);
             // Debug.Log(cell.gameObject.name+" "+(cell.gameObject.transform.position.z+cell.bounds.x0).ToString()+" "+(cell.gameObject.transform.position.z+cell.bounds.x1).ToString());
             // Debug.Log((dungeonCell.gameObject.name).ToString()+" "+(dungeonCell.gameObject.transform.position.x+dungeonCell.bounds.x1).ToString()+" "+(dungeonCell.gameObject.transform.position.x+dungeonCell.bounds.x0).ToString());
-
-            if(cell.gameObject.transform.position.z+cell.bounds.x0+cell.bounds.skinWidth>dungeonCell.gameObject.transform.position.z+dungeonCell.bounds.x1||
-            cell.gameObject.transform.position.z+cell.bounds.x1-cell.bounds.skinWidth<dungeonCell.gameObject.transform.position.z+dungeonCell.bounds.x0)
+            // Debug.Log(cell.bounds.skinWidth);
+            if(cell.gameObject.transform.position.z+cell.bounds.x0+skinWidth>dungeonCell.gameObject.transform.position.z+dungeonCell.bounds.x1||
+            cell.gameObject.transform.position.z+cell.bounds.x1-skinWidth<dungeonCell.gameObject.transform.position.z+dungeonCell.bounds.x0)
             {
                 continue;
             }
             else if(
-                cell.gameObject.transform.position.y+cell.bounds.y0+cell.bounds.skinWidth>dungeonCell.gameObject.transform.position.y+dungeonCell.bounds.y1||
-                cell.gameObject.transform.position.y+cell.bounds.y1-cell.bounds.skinWidth<dungeonCell.gameObject.transform.position.y+dungeonCell.bounds.y0
+                cell.gameObject.transform.position.y+cell.bounds.y0+skinWidth>dungeonCell.gameObject.transform.position.y+dungeonCell.bounds.y1||
+                cell.gameObject.transform.position.y+cell.bounds.y1-skinWidth<dungeonCell.gameObject.transform.position.y+dungeonCell.bounds.y0
             )
             {
                 continue;

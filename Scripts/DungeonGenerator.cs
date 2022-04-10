@@ -74,6 +74,11 @@ public class DungeonGenerator:MonoBehaviour
             Vector3 spawnpoint=previousCell.gates[gateindex].transform.position+offset;
 
             cellGameObject.transform.position=spawnpoint;
+
+            if(Utils.Instance.checkCellCollision(cell,dungeon))
+            {
+                Debug.Log("collision");
+            }
             // if(Utils.Instance.checkCellCollision(cell,dungeon))
             // {
             //     continue;
@@ -93,7 +98,7 @@ public class DungeonGenerator:MonoBehaviour
 
             }
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.5f);
             
         }
             /* 

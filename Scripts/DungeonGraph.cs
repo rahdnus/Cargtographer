@@ -14,7 +14,7 @@ namespace Cartographer{
             Node currentNode=startNode;
             while(currentNode!=null)
             {
-                Debug.Log(currentNode.type);
+                // Debug.Log(currentNode.type);
                 
                 string names="";
                 if (currentNode.branchNodes != null)
