@@ -51,19 +51,32 @@ public class DungeonGenerator:MonoBehaviour
         while(currentNode!=null)
         {
             bool goodfit=false;
+           
+            int firstgateIndex=Utils.Instance.getRandomGate(previousCell.gates,Direction.undefined);
+            
+            int gateindex=firstgateIndex;
 
             while(!goodfit)
             {
-            int gateindex=Utils.Instance.getRandomGate(previousCell.gates,Direction.undefined);
-            Direction direction=Utils.Instance.getOppositeDirection(previousCell.gates[gateindex].direction);
-                      
-            GameObject cellGameObject=GameObject.Instantiate
-            (
-                dungeonSO.getCellofType(currentNode.type,direction).gameObject,
+                gateindex=(gateindex)%previousCell.gates.Length;
+                Debug.Log(gateindex);
+         
+
+                Direction direction=Utils.Instance.getOppositeDirection(previousCell.gates[gateindex].direction);
+                
+                Cell.Type type=currentNode.type;
+              
+                Debug.Log(type.ToString()+" "+direction.ToString());
+                Cell cell1=dungeonSO.getCellofType(currentNode.type,direction);
+                GameObject temp=cell1.gameObject;
+                Debug.Log(cell1.gameObject.name);
+                GameObject cellGameObject=GameObject.Instantiate
+                (
+                temp,
                 Vector3.zero,
                 Quaternion.identity,
                 dungeon.transform
-            );
+                );
             
             
             Cell cell=cellGameObject.GetComponent<Cell>();
@@ -78,16 +91,12 @@ public class DungeonGenerator:MonoBehaviour
             if(Utils.Instance.checkCellCollision(cell,dungeon))
             {
                 Debug.Log("collision");
+                gateindex++;
+                Destroy(cellGameObject);
+                continue;
             }
-            // if(Utils.Instance.checkCellCollision(cell,dungeon))
-            // {
-            //     continue;
-            // }
-// /* 
-//                 if()check collision
-//                 continue; 
-//  */
-             goodfit=true;
+
+            goodfit=true;
             dungeon.AddCell(cell);
 
             //once finialised and conflictless
@@ -96,8 +105,8 @@ public class DungeonGenerator:MonoBehaviour
             previousCell=cell;
             currentNode=currentNode.nextNode;
 
-            }
-
+            } 
+         
             yield return new WaitForSeconds(0.5f);
             
         }
