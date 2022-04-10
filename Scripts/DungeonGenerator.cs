@@ -55,6 +55,13 @@ public class DungeonGenerator:MonoBehaviour
             int firstgateIndex=Utils.Instance.getRandomGate(previousCell.gates,Direction.undefined);
             
             int gateindex=firstgateIndex;
+            /* NOTE
+                As of now the loop has now way of terminating until it finds a goodfit
+                So in certain edge cases where no good fit can ever be found the game will crash
+
+                TODO
+                [⭕]Find a way to terminate the loop           
+             */
 
             while(!goodfit)
             {
