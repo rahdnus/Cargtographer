@@ -1,2 +1,2 @@
-# Cartographer
-Procedural Dungeon Generator using Templates
+# Cartographer2
+Procedural Dungeon Generator using Templates and GraphTheory
